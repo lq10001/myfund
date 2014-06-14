@@ -1,0 +1,67 @@
+
+<div class="pageContent">
+  <form method="post" action="${ctxPath}/product/save" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+
+    <input type="hidden" id="id" name="id" value="${product.id!}">
+
+		<div class="pageFormContent" layoutH="56">
+
+			
+			<dl>
+                <dt>名称</dt>
+                <dd><input name="name"  type="text" size="30" value="${product.name!}" alt=""/></dd>
+            </dl>
+			
+			<dl>
+                <dt>拥有者</dt>
+                <dd><input name="author"  type="text" size="30" value="${product.author!}" alt=""/></dd>
+            </dl>
+			
+			<dl>
+                <dt>电话</dt>
+                <dd><input name="phone"  type="text" size="30" value="${product.phone!}" alt=""/></dd>
+            </dl>
+			
+			<dl>
+                <dt>QQ</dt>
+                <dd><input name="qq"  type="text" size="30" value="${product.qq!}" alt=""/></dd>
+            </dl>
+			
+			<dl>
+                <dt>Email</dt>
+                <dd><input name="email"  type="text" size="30" value="${product.email!}" alt=""/></dd>
+            </dl>
+
+            <dl>
+                <dt>价格</dt>
+                <dd><input name="price"  type="text" size="30" value="${product.price!}" alt=""/></dd>
+            </dl>
+			
+			<dl>
+                <dt>销售提成</dt>
+                <dd><input name="sales"  type="text" size="30" value="${product.sales!}" alt=""/></dd>
+            </dl>
+			
+			<dl>
+                <dt>描述</dt>
+                <dd><input name="des"  type="text" size="30" value="${product.des!}" alt=""/></dd>
+            </dl>
+			
+			<dl>
+                <dt>备注</dt>
+                <dd><input name="memo"  type="text" size="30" value="${product.memo!}" alt=""/></dd>
+            </dl>
+			
+
+						
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li>
+					<div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+				</li>
+			</ul>
+		</div>
+	</form>
+</div>

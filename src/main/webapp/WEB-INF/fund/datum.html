@@ -1,0 +1,45 @@
+
+<div class="pageContent">
+  <form method="post" action="${ctxPath}/datum/save" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+
+    <input type="hidden" id="id" name="id" value="${datum.id!}">
+
+		<div class="pageFormContent" layoutH="56">
+
+
+			<dl>
+                <dt>名称</dt>
+                <dd><input name="name"  type="text" size="30" value="${datum.name!}" alt=""/></dd>
+            </dl>
+			
+			<dl>
+                <dt>URL</dt>
+                <dd><input name="url"  type="text" size="30" value="${datum.url!}" alt=""/></dd>
+            </dl>
+			
+			<dl>
+                <dt>提取码</dt>
+                <dd><input name="pwd"  type="text" size="30" value="${datum.pwd!}" alt=""/></dd>
+            </dl>
+			
+			<dl>
+                <dt>提供者</dt>
+                <dd><input name="mname"  type="text" size="30" value="${datum.mname!}" alt=""/></dd>
+            </dl>
+			
+			<dl>
+                <dt>备注</dt>
+                <dd><input name="memo"  type="text" size="30" value="${datum.memo!}" alt=""/></dd>
+            </dl>
+						
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li>
+					<div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+				</li>
+			</ul>
+		</div>
+	</form>
+</div>

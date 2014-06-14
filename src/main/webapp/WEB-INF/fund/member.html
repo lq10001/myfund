@@ -1,0 +1,49 @@
+
+<div class="pageContent">
+  <form method="post" action="${ctxPath}/member/save" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+
+    <input type="hidden" id="id" name="id" value="${member.id!}">
+
+		<div class="pageFormContent" layoutH="56">
+
+            <dl>
+                <dt>姓名</dt>
+                <dd><input name="name"  type="text" size="30" value="${member.name!}" alt=""/></dd>
+            </dl>
+            <dl>
+                <dt>电话</dt>
+                <dd><input name="phone"  type="text" size="30" value="${member.phone!}" alt=""/></dd>
+            </dl>
+            <dl>
+                <dt>QQ</dt>
+                <dd><input name="qq"  type="text" size="30" value="${member.qq!}" alt=""/></dd>
+            </dl>
+
+            <dl>
+                <dt>Email</dt>
+                <dd><input name="email"  type="text" size="30" value="${member.email!}" alt=""/></dd>
+            </dl>
+
+            <dl>
+                <dt>技能</dt>
+                <dd><input name="skill"  type="text" size="30" value="${member.skill!}" alt=""/></dd>
+            </dl>
+
+
+            <dl>
+                <dt>备注</dt>
+                <dd><input name="memo"  type="text" size="30" value="${member.memo!}" alt=""/></dd>
+            </dl>
+
+
+        </div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li>
+					<div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+				</li>
+			</ul>
+		</div>
+	</form>
+</div>

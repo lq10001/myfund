@@ -1,0 +1,166 @@
+
+<form id="pagerForm" method="post" action="${ctxPath}/product">
+    <input type="hidden" name="pageNum" value="${page.pageNum}" />
+    <input type="hidden" name="numPerPage" value="${page.pageSize}" />
+</form>
+
+<div class="pageHeader">
+	<form onsubmit="return navTabSearch(this);" action="${ctxPath}/product" rel="pagerForm" method="post">
+	<div class="searchBar">
+		<table class="searchContent">
+			<tr>
+				<td>
+					<label>名称：</label>
+					<input type="text"  id="name" name="name" value="${product.name!}"/>
+				</td>
+			
+				<td>
+					<label>拥有者：</label>
+					<input type="text"  id="author" name="author" value="${product.author!}"/>
+				</td>
+			
+				<td>
+					<label>电话：</label>
+					<input type="text"  id="phone" name="phone" value="${product.phone!}"/>
+				</td>
+			
+				<td>
+					<label>QQ：</label>
+					<input type="text"  id="qq" name="qq" value="${product.qq!}"/>
+				</td>
+            </tr>
+            <tr>
+			
+				<td>
+					<label>Email：</label>
+					<input type="text"  id="email" name="email" value="${product.email!}"/>
+				</td>
+
+                <td>
+                    <label>价格：</label>
+                    <input type="text"  id="price" name="price" value="${product.price!}"/>
+                </td>
+
+
+                <td>
+					<label>销售提成：</label>
+					<input type="text"  id="sales" name="sales" value="${product.sales!}"/>
+				</td>
+																																		
+				<td>
+					<div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div>
+				</td>
+			</tr>
+		</table>
+		<div class="subBar">
+		</div>
+		
+	</div>
+	</form>
+</div>
+
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<l1><a class="add" href="${ctxPath}/product/edit" target="dialog" rel="dlg_form" mask="true" title="添加菜单" width="520" height="400"><span>添加</span></a></l1>
+			<li><a class="delete" href="${ctxPath}/product/del?id={sid}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
+            <l1><a class="edit" href="${ctxPath}/product/edit?id={sid}" target="dialog" rel="dlg_form" mask="true" title="修改菜单" width="520" height="400"><span>修改</span></a></l1>
+		
+			<li class="line">line</li>
+		</ul>
+	</div>
+	<table class="table" width="100%" layoutH="138">
+		<thead>
+			<tr>
+
+			
+				<th>编号</th>
+			
+				<th>名称</th>
+			
+				<th>拥有者</th>
+			
+				<th>电话</th>
+			
+				<th>QQ</th>
+			
+				<th>Email</th>
+
+                <th>价格</th>
+
+                <th>销售提成</th>
+			
+				<th>描述</th>
+
+
+			</tr>
+		</thead>
+		<tbody>
+
+		<%
+        for(obj in list_obj){
+        %>
+
+            <tr target="sid" rel="${obj.id}">
+
+            
+				<td>
+					 ${obj.id!}
+				</td>
+			
+				<td>
+					 ${obj.name!}
+				</td>
+			
+				<td>
+					 ${obj.author!}
+				</td>
+			
+				<td>
+					 ${obj.phone!}
+				</td>
+			
+				<td>
+					 ${obj.qq!}
+				</td>
+			
+				<td>
+					 ${obj.email!}
+				</td>
+
+                <td>
+                    ${obj.price!}
+                </td>
+			
+				<td>
+					 ${obj.sales!}
+				</td>
+			
+				<td>
+					 ${obj.des!}
+				</td>
+			
+
+			
+
+				
+            </tr>    
+         <%}%>   
+
+		</tbody>
+	</table>
+    <div class="panelBar">
+        <div class="pages">
+            <span>显示</span>
+            <select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="50">50</option>
+            </select>
+            <span>条，共${page.recordCount}条</span>
+        </div>
+
+        <div class="pagination" targetType="navTab" totalCount="${page.recordCount}" numPerPage="${page.pageSize}" pageNumShown="5" currentPage="${page.pageNumber}"></div>
+    </div>
+</div>
