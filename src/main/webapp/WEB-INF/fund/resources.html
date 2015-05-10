@@ -1,40 +1,59 @@
 
-<div class="pageContent">
-  <form method="post" action="${ctxPath}/resources/save" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+<%
+var selected1 = "";
+%>
+<div class="bjui-pageContent">
+  <form method="post" action="${ctxPath}/resources/save" class="pageForm" data-toggle="validate">
 
     <input type="hidden" id="id" name="id" value="${resources.id!}">
+    <input type="hidden" id="action" name="action" value="${action!}">
 
-		<div class="pageFormContent" layoutH="56">
+
+    	<div class="pageFormContent" data-layout-h="0">
+
+    		<table class="table table-condensed table-hover" width="100%">
+				<tbody>
 
 
-			<dl>
-                <dt>名称</dt>
-                <dd><input name="name"  type="text" size="30" value="${resources.name!}" alt=""/></dd>
-            </dl>
-			
-			<dl>
-                <dt>类型</dt>
-                <dd><input name="type"  type="text" size="30" value="${resources.type!}" alt=""/></dd>
-            </dl>
-			
-			<dl>
-                <dt>描述</dt>
-                <dd><input name="des"  type="text" size="30" value="${resources.des!}" alt=""/></dd>
-            </dl>
-			
-			<dl>
-                <dt>备注</dt>
-                <dd><input name="memo"  type="text" size="30" value="${resources.memo!}" alt=""/></dd>
-            </dl>
-						
+				<tr>
+					<td>
+						<label for="j_name" class="control-label x85">名称</label>
+						<input type="text" name="name" id="j_name" value="${resources.name!}" data-rule="" size="20">
+		            </td>
+		        </tr>
+
+				<tr>
+					<td>
+						<label for="j_type" class="control-label x85">类型</label>
+						<input type="text" name="type" id="j_type" value="${resources.type!}" data-rule="" size="20">
+		            </td>
+		        </tr>
+
+				<tr>
+					<td>
+						<label for="j_des" class="control-label x85">描述</label>
+						<input type="text" name="des" id="j_des" value="${resources.des!}" data-rule="" size="20">
+		            </td>
+		        </tr>
+
+				<tr>
+					<td>
+						<label for="j_memo" class="control-label x85">备注</label>
+						<input type="text" name="memo" id="j_memo" value="${resources.memo!}" data-rule="" size="20">
+		            </td>
+		        </tr>
+
+				</tbody>
+			</table>
 		</div>
-		<div class="formBar">
-			<ul>
-				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
-				<li>
-					<div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
-				</li>
-			</ul>
-		</div>
+
+
 	</form>
+</div>
+
+<div class="bjui-pageFooter">
+	<ul>
+		<li><button type="button" class="btn-close" data-icon="close">取消</button></li>
+		<li><button type="submit" class="btn-default" data-icon="save">保存</button></li>
+	</ul>
 </div>

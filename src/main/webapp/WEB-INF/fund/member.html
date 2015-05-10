@@ -1,49 +1,73 @@
 
-<div class="pageContent">
-  <form method="post" action="${ctxPath}/member/save" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+<%
+var selected1 = "";
+%>
+<div class="bjui-pageContent">
+  <form method="post" action="${ctxPath}/member/save" class="pageForm" data-toggle="validate">
 
     <input type="hidden" id="id" name="id" value="${member.id!}">
-
-		<div class="pageFormContent" layoutH="56">
-
-            <dl>
-                <dt>姓名</dt>
-                <dd><input name="name"  type="text" size="30" value="${member.name!}" alt=""/></dd>
-            </dl>
-            <dl>
-                <dt>电话</dt>
-                <dd><input name="phone"  type="text" size="30" value="${member.phone!}" alt=""/></dd>
-            </dl>
-            <dl>
-                <dt>QQ</dt>
-                <dd><input name="qq"  type="text" size="30" value="${member.qq!}" alt=""/></dd>
-            </dl>
-
-            <dl>
-                <dt>Email</dt>
-                <dd><input name="email"  type="text" size="30" value="${member.email!}" alt=""/></dd>
-            </dl>
-
-            <dl>
-                <dt>技能</dt>
-                <dd><input name="skill"  type="text" size="30" value="${member.skill!}" alt=""/></dd>
-            </dl>
+    <input type="hidden" id="action" name="action" value="${action!}">
 
 
-            <dl>
-                <dt>备注</dt>
-                <dd><input name="memo"  type="text" size="30" value="${member.memo!}" alt=""/></dd>
-            </dl>
+    	<div class="pageFormContent" data-layout-h="0">
+
+    		<table class="table table-condensed table-hover" width="100%">
+				<tbody>
 
 
-        </div>
-		<div class="formBar">
-			<ul>
-				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
-				<li>
-					<div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
-				</li>
-			</ul>
+				<tr>
+					<td>
+						<label for="j_name" class="control-label x85">姓名</label>
+						<input type="text" name="name" id="j_name" value="${member.name!}" data-rule="" size="20">
+		            </td>
+		        </tr>
+
+				<tr>
+					<td>
+						<label for="j_phone" class="control-label x85">电话</label>
+						<input type="text" name="phone" id="j_phone" value="${member.phone!}" data-rule="" size="20">
+		            </td>
+		        </tr>
+
+				<tr>
+					<td>
+						<label for="j_email" class="control-label x85">Email</label>
+						<input type="text" name="email" id="j_email" value="${member.email!}" data-rule="" size="20">
+		            </td>
+		        </tr>
+
+				<tr>
+					<td>
+						<label for="j_qq" class="control-label x85">QQ</label>
+						<input type="text" name="qq" id="j_qq" value="${member.qq!}" data-rule="" size="20">
+		            </td>
+		        </tr>
+
+				<tr>
+					<td>
+						<label for="j_skill" class="control-label x85">技能</label>
+						<input type="text" name="skill" id="j_skill" value="${member.skill!}" data-rule="" size="20">
+		            </td>
+		        </tr>
+
+				<tr>
+					<td>
+						<label for="j_memo" class="control-label x85">备注</label>
+						<input type="text" name="memo" id="j_memo" value="${member.memo!}" data-rule="" size="20">
+		            </td>
+		        </tr>
+
+				</tbody>
+			</table>
 		</div>
+
+
 	</form>
+</div>
+
+<div class="bjui-pageFooter">
+	<ul>
+		<li><button type="button" class="btn-close" data-icon="close">取消</button></li>
+		<li><button type="submit" class="btn-default" data-icon="save">保存</button></li>
+	</ul>
 </div>

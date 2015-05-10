@@ -1,6 +1,6 @@
 package com.ly.fund.action;
 
-import com.ly.comm.Dwz;
+import com.ly.comm.Bjui;
 import com.ly.comm.Page;
 import com.ly.comm.ParseObj;
 import org.nutz.dao.Cnd;
@@ -15,6 +15,9 @@ import org.nutz.mvc.filter.CheckSession;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
+
+import net.sf.ehcache.CacheManager;
+
 
 import com.ly.fund.vo.Product;
 import com.ly.fund.service.ProductService;
@@ -36,36 +39,58 @@ public class ProductAction {
     public void index(@Param("..")Page p,
                       @Param("..")Product product,
                       HttpServletRequest request){
-        Cnd c = new ParseObj(product).getCnd();
-        List<Product> list_m = productService.query(c, p);
-        p.setRecordCount(productService.count(c));
 
-        request.setAttribute("list_obj", list_m);
+        Cnd c = new ParseObj(product).getCnd();
+        if (c == null || c.equals(""))
+        {
+            p.setRecordCount(productService.listCount(c));
+            request.setAttribute("list_obj", productService.queryCache(c,p));
+        }else{
+            p.setRecordCount(productService.count(c));
+            request.setAttribute("list_obj", productService.query(c,p));
+        }
+
         request.setAttribute("page", p);
         request.setAttribute("product", product);
     }
 
     @At
     @Ok("beetl:/WEB-INF/fund/product.html")
-    public void edit(@Param("id")Long id,
+    public void edit(@Param("action")int action,
+                     @Param("id")Long id,
                       HttpServletRequest request){
         if(id == null || id == 0){
             request.setAttribute("product", null);
         }else{
-            request.setAttribute("product", productService.fetch(id));
+
+            Product product = productService.fetch(id);
+            if (action == 3)
+            {
+                product.setName(null);
+            }
+            request.setAttribute("product", product);
         }
+        request.setAttribute("action", action);
     }
 
     @At
     @Ok("json")
-    public Map<String,String> save( @Param("..")Product product){
+    public Map<String,String> save(@Param("action")int action,
+                                @Param("..")Product product){
         Object rtnObject;
         if (product.getId() == null || product.getId() == 0) {
             rtnObject = productService.dao().insert(product);
         }else{
-            rtnObject = productService.dao().updateIgnoreNull(product);
+            if (action == 3) {
+                product.setId(null);
+                rtnObject = productService.dao().insert(product);
+            }else{
+                rtnObject = productService.dao().updateIgnoreNull(product);
+            }
         }
-        return Dwz.rtnMap((rtnObject == null) ? false : true, "product", "closeCurrent");
+        CacheManager.getInstance().getCache(ProductService.CACHE_NAME).removeAll();
+        return Bjui.rtnMap((rtnObject == null) ? false : true, "tab_product", true);
+
     }
 
     @At
@@ -73,7 +98,8 @@ public class ProductAction {
     public Map<String,String> del(@Param("id")Long id)
     {
         int num =  productService.delete(id);
-        return Dwz.rtnMap((num > 0) ? true : false , "product", "");
+        CacheManager.getInstance().getCache(ProductService.CACHE_NAME).removeAll();
+        return Bjui.rtnMap((num > 0) ? true : false , "tab_product",false);
     }
 
 }

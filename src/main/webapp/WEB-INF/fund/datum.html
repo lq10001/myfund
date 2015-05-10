@@ -1,45 +1,66 @@
 
-<div class="pageContent">
-  <form method="post" action="${ctxPath}/datum/save" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+<%
+var selected1 = "";
+%>
+<div class="bjui-pageContent">
+  <form method="post" action="${ctxPath}/datum/save" class="pageForm" data-toggle="validate">
 
     <input type="hidden" id="id" name="id" value="${datum.id!}">
+    <input type="hidden" id="action" name="action" value="${action!}">
 
-		<div class="pageFormContent" layoutH="56">
+
+    	<div class="pageFormContent" data-layout-h="0">
+
+    		<table class="table table-condensed table-hover" width="100%">
+				<tbody>
 
 
-			<dl>
-                <dt>名称</dt>
-                <dd><input name="name"  type="text" size="30" value="${datum.name!}" alt=""/></dd>
-            </dl>
-			
-			<dl>
-                <dt>URL</dt>
-                <dd><input name="url"  type="text" size="30" value="${datum.url!}" alt=""/></dd>
-            </dl>
-			
-			<dl>
-                <dt>提取码</dt>
-                <dd><input name="pwd"  type="text" size="30" value="${datum.pwd!}" alt=""/></dd>
-            </dl>
-			
-			<dl>
-                <dt>提供者</dt>
-                <dd><input name="mname"  type="text" size="30" value="${datum.mname!}" alt=""/></dd>
-            </dl>
-			
-			<dl>
-                <dt>备注</dt>
-                <dd><input name="memo"  type="text" size="30" value="${datum.memo!}" alt=""/></dd>
-            </dl>
-						
+				<tr>
+					<td>
+						<label for="j_name" class="control-label x85">名称</label>
+						<input type="text" name="name" id="j_name" value="${datum.name!}" data-rule="" size="20">
+		            </td>
+		        </tr>
+
+				<tr>
+					<td>
+						<label for="j_url" class="control-label x85">URL</label>
+						<input type="text" name="url" id="j_url" value="${datum.url!}" data-rule="" size="20">
+		            </td>
+		        </tr>
+
+				<tr>
+					<td>
+						<label for="j_pwd" class="control-label x85">提取码</label>
+						<input type="text" name="pwd" id="j_pwd" value="${datum.pwd!}" data-rule="" size="20">
+		            </td>
+		        </tr>
+
+				<tr>
+					<td>
+						<label for="j_mname" class="control-label x85">提供者</label>
+						<input type="text" name="mname" id="j_mname" value="${datum.mname!}" data-rule="" size="20">
+		            </td>
+		        </tr>
+
+				<tr>
+					<td>
+						<label for="j_memo" class="control-label x85">备注</label>
+						<input type="text" name="memo" id="j_memo" value="${datum.memo!}" data-rule="" size="20">
+		            </td>
+		        </tr>
+
+				</tbody>
+			</table>
 		</div>
-		<div class="formBar">
-			<ul>
-				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
-				<li>
-					<div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
-				</li>
-			</ul>
-		</div>
+
+
 	</form>
+</div>
+
+<div class="bjui-pageFooter">
+	<ul>
+		<li><button type="button" class="btn-close" data-icon="close">取消</button></li>
+		<li><button type="submit" class="btn-default" data-icon="save">保存</button></li>
+	</ul>
 </div>
